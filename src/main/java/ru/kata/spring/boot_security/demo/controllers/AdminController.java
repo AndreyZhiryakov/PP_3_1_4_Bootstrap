@@ -25,6 +25,8 @@ public class AdminController {
     }
 
 
+
+
     @GetMapping(value = "admin")
     public String viewUsers(Model model) {
         model.addAttribute("adminPage", userService.getUsersList());
