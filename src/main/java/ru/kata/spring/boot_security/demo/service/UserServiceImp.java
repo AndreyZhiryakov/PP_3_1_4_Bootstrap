@@ -51,11 +51,11 @@ public class UserServiceImp implements UserService {
 
     @Override
     public boolean addUser(User user) {
-        User userFromDB = userRepository.findByUsername(user.getUsername());
+        User userFromDB = userRepository.findByUsername(user.getEmail());
         if (userFromDB != null) {
             return false;
         }
-//        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
@@ -69,11 +69,10 @@ public class UserServiceImp implements UserService {
     @Override
     public void updateUser(Long userId, User updateUser) {
         User userToBeUpdate = userRepository.getById(userId);
-        userToBeUpdate.setUsername(updateUser.getUsername());
+        userToBeUpdate.setEmail(updateUser.getEmail());
         userToBeUpdate.setPassword(bCryptPasswordEncoder.encode(updateUser.getPassword()));
         userToBeUpdate.setRoles((Set<Role>) updateUser.getRoles());
         userRepository.save(userToBeUpdate);
-//        userToBeUpdate.setPassword(bCryptPasswordEncoder.encode(updateUser.getPassword()));
-//        userToBeUpdate.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+
     }
 }

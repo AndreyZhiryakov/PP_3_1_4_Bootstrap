@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 @Controller
-public class Registration {
+public class RegistrationController {
     private UserService userService;
 
     @Autowired
-    public Registration(UserService userService) {
+    public RegistrationController(UserService userService) {
         this.userService = userService;
     }
 

@@ -34,7 +34,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user").hasAnyRole("ADMIN","USER")
                 .anyRequest().hasRole("ADMIN")
                 .and()
-                .formLogin().successHandler(successUserHandler)
+                .formLogin().loginPage("/login")
+                .loginProcessingUrl("process_login")
+                .successHandler(successUserHandler)
                 .permitAll()
                 .and()
                 .logout()
@@ -67,6 +69,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        return authenticationProvider;
     //}
 
+//    protected void configure(HttpSecurity http) throws Exception{
+//
+//    }
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userServiceImp).passwordEncoder(bCryptPasswordEncoder());

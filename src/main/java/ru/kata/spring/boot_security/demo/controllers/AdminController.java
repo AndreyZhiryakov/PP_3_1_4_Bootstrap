@@ -30,13 +30,13 @@ public class AdminController {
     @GetMapping(value = "admin")
     public String viewUsers(Model model) {
         model.addAttribute("adminPage", userService.getUsersList());
-        return "users";
+        return "admin-page";
     }
 
     @GetMapping(value = "admin/new")
     public String getNewUserForm(Model model) {
         model.addAttribute("user", new User());
-        return "new";
+        return "add-new-user";
     }
 
     @PostMapping(value = "admin/new")
@@ -48,7 +48,7 @@ public class AdminController {
     @GetMapping("/admin/{id}")
     public String getFormUserUpdate(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", userService.getUserById(id));
-        return "edit";
+        return "edit-user";
     }
 
     @PatchMapping("/admin/{id}")
@@ -68,7 +68,7 @@ public class AdminController {
         User user = (User) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
         model.addAttribute("userPage", userService.getUserById(id));
-        return "user";
+        return "user-page";
     }
 
 }

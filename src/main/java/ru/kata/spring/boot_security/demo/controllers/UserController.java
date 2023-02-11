@@ -22,7 +22,7 @@ public class UserController {
 
     public String userPage(Model model, Principal principal) {
         model.addAttribute("userPage", userServiceImp.loadUserByUsername(principal.getName()));
-        return "user";
+        return "user-page";
     }
 
 }
