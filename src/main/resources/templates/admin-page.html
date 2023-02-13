@@ -11,7 +11,7 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" th:object= "${adminPage}"}>
             <div class="card text-white bg-dark" style="height: 50px">
                 <div class="card-body">
                     <p class="card-text" style="font-size: 20px; position: absolute; top: 12px"><strong>admin@mail.ru</strong> with roles: ADMIN USER</p>
@@ -53,11 +53,11 @@
                             All users
                         </h5>
                         <div class="card-body">
-                            <table class="table">
+                            <table class="table" >
                                 <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">First</th>
+                                    <th scope="col">FirstName</th>
                                     <th scope="col">LastName</th>
                                     <th scope="col">Age</th>
                                     <th scope="col">Email</th>
@@ -67,14 +67,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr style="background-color:rgba(58,74,74,0.06)">
+                                <tr style="background-color:rgba(58,74,74,0.06)" th:each ="user: ${adminPage}">
 
-                                    <td>1</td>
-                                    <td>admin</td>
-                                    <td>admin</td>
-                                    <td>35</td>
-                                    <td>admin@mail.ru</td>
-                                    <td>ADMIN USER</td>
+                                    <td th:text="${user.getId()}">
+                                    <td th:text="${user.getFirstname()}">
+                                    <td th:text="${user.getLastname()}">
+                                    <td th:text="${user.getAge()}">
+                                    <td th:text="${user.getEmail()}">
+                                    <td th:text="${user.getAuthorities()}">
                                     <td>
                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#staticBackdrop">
                                             Edit
@@ -126,13 +126,13 @@
                                                                 </select>
                                                             </div>
                                                         </form>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Edit</button>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Edit</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         </div>
                                     </td>
 
