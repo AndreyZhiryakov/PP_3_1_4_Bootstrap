@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:text-align="http://www.w3.org/1999/xhtml" xmlns: xmlns: xmlns:p>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta charset="utf-8">
@@ -12,12 +12,12 @@
 <body>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" th:object="${userPage}">
       <div class="card text-white bg-dark" style="height: 50px">
         <div class="card-body">
           <p class="card-text" style="font-size: 20px; position: absolute; top: 12px"><strong>user@mail.ru</strong> with roles: USER</p>
           <div class="float-right">
-            <a href="#!"   style="color: darkgrey" class="card-link"  >Logout</a>
+            <a href="/logout"   style="color: darkgrey" class="card-link"  >Logout</a>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
                 <thead>
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">First</th>
+                  <th scope="col">FirstName</th>
                   <th scope="col">LastName</th>
                   <th scope="col">Age</th>
                   <th scope="col">Email</th>
@@ -54,15 +54,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr style="background-color:rgba(58,74,74,0.06)">
+                <tr th:method="GET" th:action="@{/user}" th:object="${userPage}" style="background-color:rgba(58,74,74,0.06)">
 
-                  <td>1</td>
-                  <td>user</td>
-                  <td>user</td>
-                  <td>35</td>
-                  <td>user@mail.ru</td>
-                  <td>USER</td>
-                </tr>
+                  <td th:text="${userPage.getId()}">
+                  <td th:text="${userPage.getFirstname()}">
+                  <td th:text="${userPage.getLastname()}">
+                  <td th:text="${userPage.getAge()}">
+                  <td th:text="${userPage.getEmail()}">
+                  <td th:text="${userPage.getAuthorities()}">
+                  </tr>
                 </tbody>
               </table>
             </div>

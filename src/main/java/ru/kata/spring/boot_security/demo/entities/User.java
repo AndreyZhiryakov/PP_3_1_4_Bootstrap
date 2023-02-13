@@ -36,7 +36,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    private String username;
+
 
     @ManyToMany(fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
@@ -139,7 +139,5 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+
 }

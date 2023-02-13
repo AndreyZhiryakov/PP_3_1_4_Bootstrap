@@ -71,4 +71,9 @@ public class AdminController {
         return "user-page";
     }
 
+    @GetMapping(value="/index")
+    public String index(){
+        return "index";
+    }
+
 }
