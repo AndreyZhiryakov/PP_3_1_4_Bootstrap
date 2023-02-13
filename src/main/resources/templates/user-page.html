@@ -15,7 +15,13 @@
     <div class="col-md-12" th:object="${userPage}">
       <div class="card text-white bg-dark" style="height: 50px">
         <div class="card-body">
-          <p class="card-text" style="font-size: 20px; position: absolute; top: 12px"><strong>user@mail.ru</strong> with roles: USER</p>
+          <p class="card-text" style="font-size: 20px; position: absolute; top: 12px">
+             <strong>
+              <td th:text="${userPage.getEmail()}"></td>
+             </strong>
+            with roles:
+            <td th:text = "${userPage.getAuthorities()}"></td>
+          </p>
           <div class="float-right">
             <a href="/logout"   style="color: darkgrey" class="card-link"  >Logout</a>
           </div>
