@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 
@@ -44,7 +45,7 @@ public class User implements UserDetails {
             referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "roles_id",
             referencedColumnName = "id"))
 
-    private Set<Role> roles;
+    private List<Role> roles;
 
 
     public User() {
@@ -111,7 +112,7 @@ public class User implements UserDetails {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 

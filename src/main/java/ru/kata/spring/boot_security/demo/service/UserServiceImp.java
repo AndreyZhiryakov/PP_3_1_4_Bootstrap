@@ -71,7 +71,7 @@ public class UserServiceImp implements UserService {
         User userToBeUpdate = userRepository.getById(userId);
         userToBeUpdate.setEmail(updateUser.getEmail());
         userToBeUpdate.setPassword(bCryptPasswordEncoder.encode(updateUser.getPassword()));
-        userToBeUpdate.setRoles((Set<Role>) updateUser.getRoles());
+        userToBeUpdate.setRoles((List<Role>) updateUser.getRoles());
         userRepository.save(userToBeUpdate);
 
     }
