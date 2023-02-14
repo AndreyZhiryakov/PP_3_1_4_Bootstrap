@@ -37,7 +37,8 @@ public class AdminController {
     }
 
     @GetMapping(value = "admin/new")
-    public String getNewUserForm(Model model) {
+    public String getNewUserForm(Model model,Principal principal) {
+        model.addAttribute("admin", userService.loadUserByUsername(principal.getName()));
         model.addAttribute("user", new User());
         return "add-new-user";
     }

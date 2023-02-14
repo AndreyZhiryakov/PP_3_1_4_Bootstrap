@@ -12,13 +12,18 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" th:object= "${admin}">
             <div class="card text-white bg-dark" style="height: 50px">
                 <div class="card-body">
                     <p class="card-text" style="font-size: 20px; position: absolute; top: 12px">
-                        <strong>admin@mail.ru</strong> with roles: ADMIN USER</p>
+                        <strong>
+                            <td th:text="${admin.getUsername()}"></td>
+                        </strong>
+                        with roles:
+                    <td th:text="${admin.getAuthorities()}"></td>
+                    </p>
                     <div class="float-right">
-                        <a href="#!" style="color: darkgrey" class="card-link">Logout</a>
+                        <a href="/logout" style="color: darkgrey" class="card-link">Logout</a>
                     </div>
                 </div>
             </div>
