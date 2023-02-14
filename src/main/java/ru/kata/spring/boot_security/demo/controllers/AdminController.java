@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.entities.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+import java.security.Principal;
 
 
 @Controller
@@ -28,8 +30,9 @@ public class AdminController {
 
 
     @GetMapping(value = "admin")
-    public String viewUsers(Model model) {
+    public String viewUsers(Model model, Principal principal) {
         model.addAttribute("adminPage", userService.getUsersList());
+        model.addAttribute("user", userService.loadUserByUsername(principal.getName()));
         return "admin-page";
     }
 
