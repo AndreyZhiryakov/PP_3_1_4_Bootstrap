@@ -51,6 +51,10 @@ public class Role implements GrantedAuthority {
     }
 
 
+    public String getUnRole() {
+        return role.replace("ROLE_", "");
+    }
+
     @Override
     public String toString() {
         return role;

@@ -85,9 +85,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="role"><strong>Role</strong></label>
-                                    <select multiple class="form-control" id="role" style="height: 60px">
-                                        <option>ADMIN</option>
-                                        <option style="color: white;background:rgba(156,77,255,0.76);" >USER</option>
+                                    <select name="rolesSelected" multiple class="form-control" size="2" aria-label="size 2 select example"id="role" style="height: 60px">
+<!--                                        <option>ADMIN</option>-->
+<!--                                        <option style="color: white;background:rgba(156,77,255,0.76);" >USER</option>-->
+                                        <div th:each="role : ${allRoles}">
+                                            <option th:text="${role.getUnRole()}" th:value="${role.getId()}" name="roles"/>
+                                        </div>
                                     </select>
                                 </div>
                               <button type="submit" class="card text-white" style="font-size:130%; width:auto; height: 45px;

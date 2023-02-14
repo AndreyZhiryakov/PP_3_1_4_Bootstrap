@@ -6,11 +6,19 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.kata.spring.boot_security.demo.entities.Role;
 import ru.kata.spring.boot_security.demo.entities.User;
+import ru.kata.spring.boot_security.demo.repositories.RoleRepository;
+import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 
 @Controller
@@ -19,14 +27,17 @@ public class AdminController {
 
 
     private UserService userService;
+    private RoleService roleService;
+    private final RoleRepository roleRepository;
 
 
     @Autowired
-    public AdminController(UserService userService) {
+    public AdminController(UserService userService,RoleService roleService,
+                           RoleRepository roleRepository) {
         this.userService = userService;
+        this.roleService = roleService;
+        this.roleRepository = roleRepository;
     }
-
-
 
 
     @GetMapping(value = "admin")
@@ -37,14 +48,24 @@ public class AdminController {
     }
 
     @GetMapping(value = "admin/new")
-    public String getNewUserForm(Model model,Principal principal) {
+    public String getNewUserForm(Model model, Principal principal) {
         model.addAttribute("admin", userService.loadUserByUsername(principal.getName()));
         model.addAttribute("user", new User());
+        model.addAttribute("allRoles",roleService.getAllRoles());
         return "add-new-user";
     }
 
     @PostMapping(value = "admin/new")
-    public String addNewUser(@ModelAttribute("user") User user) {
+    public String addNewUser(@ModelAttribute("user") User user,@RequestParam("rolesSelected")Long[] rolesId,
+    BindingResult bindingResult) throws Exception {
+        if(bindingResult.hasErrors()){
+            return "admin-new-user";
+        }
+        List<Role> roles = new ArrayList<>();
+        for(Long roleId:rolesId) {
+            roles.add(roleRepository.getById(roleId));
+        }
+        user.setRoles(roles);
         userService.addUser(user);
         return "redirect:/admin";
     }
@@ -57,7 +78,7 @@ public class AdminController {
 
     @PatchMapping("/admin/{id}")
     public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") long id) {
-        userService.updateUser(id,user);
+        userService.updateUser(id, user);
         return "redirect:/admin";
     }
 
@@ -75,8 +96,8 @@ public class AdminController {
         return "user-page";
     }
 
-    @GetMapping(value="/index")
-    public String index(){
+    @GetMapping(value = "/index")
+    public String index() {
         return "index";
     }
 
