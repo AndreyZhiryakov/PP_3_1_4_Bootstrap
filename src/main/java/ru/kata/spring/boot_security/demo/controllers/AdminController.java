@@ -73,7 +73,7 @@ public class AdminController {
     @GetMapping("/admin/{id}")
     public String getFormUserUpdate(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", userService.getUserById(id));
-        return "edit-user";
+        return "admin-page";
     }
 
     @PatchMapping("/admin/{id}")
