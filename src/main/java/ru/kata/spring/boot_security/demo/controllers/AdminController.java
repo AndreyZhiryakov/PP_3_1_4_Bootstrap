@@ -58,9 +58,6 @@ public class AdminController {
     @PostMapping(value = "admin/new")
     public String addNewUser(@ModelAttribute("user") User user,@RequestParam("rolesSelected")Long[] rolesId,
     BindingResult bindingResult) throws Exception {
-        if(bindingResult.hasErrors()){
-            return "admin-new-user";
-        }
         List<Role> roles = new ArrayList<>();
         for(Long roleId:rolesId) {
             roles.add(roleRepository.getById(roleId));
@@ -73,12 +70,27 @@ public class AdminController {
     @GetMapping("/admin/{id}")
     public String getFormUserUpdate(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("allRoles", roleService.getAllRoles());
         return "admin-page";
     }
 
+//    @PatchMapping("/admin/{id}")
+//    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") long id) {
+//        userService.updateUser(id, user);
+//        return "redirect:/admin";
+//    }
+
     @PatchMapping("/admin/{id}")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") long id) {
-        userService.updateUser(id, user);
+    public String editUse(@ModelAttribute("user") User user, @RequestParam("rolesSelected")Long[] rolesId,
+                          BindingResult bindingResult, Model model){
+        model.addAttribute("allRoles", roleService.getAllRoles());
+        List<Role> roles = new ArrayList<>();
+        for (Long roleId : rolesId) {
+            roles.add(roleRepository.getById(roleId));
+        }
+
+        user.setRoles(roles);
+        userService.updateUser(user.getId(), user);
         return "redirect:/admin";
     }
 
