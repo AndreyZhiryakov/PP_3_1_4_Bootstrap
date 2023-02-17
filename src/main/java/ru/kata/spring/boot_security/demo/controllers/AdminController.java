@@ -15,6 +15,7 @@ import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,15 +75,26 @@ public class AdminController {
         return "admin-page";
     }
 
+
+
+
     @PatchMapping("/admin/{id}")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") long id) {
+    public String getUpdate (@ModelAttribute("user") User user, BindingResult bindingResult, @PathVariable ("id") Long  id) {
         userService.updateUser(id, user);
         return "redirect:/admin";
     }
 
 //    @PatchMapping("/admin/{id}")
+//    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") long id) {
+//        userService.updateUser(id, user);
+//        return "redirect:/admin";
+//    }
+
+//    @PatchMapping("/admin/{id}")
 //    public String editUse(@ModelAttribute("user") User user, @RequestParam("rolesSelected")Long[] rolesId,
 //                          BindingResult bindingResult, Model model){
+//      public String editUse(@ModelAttribute("user") User user, @RequestParam("rolesSelected")Long[] rolesId,
+//               BindingResult bindingResult, Model model){
 //        model.addAttribute("allRoles", roleService.getAllRoles());
 //        List<Role> roles = new ArrayList<>();
 //        for (Long roleId : rolesId) {
