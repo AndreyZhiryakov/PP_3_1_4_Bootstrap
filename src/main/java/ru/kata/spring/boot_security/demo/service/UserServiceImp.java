@@ -69,6 +69,9 @@ public class UserServiceImp implements UserService {
     @Override
     public void updateUser(Long userId, User updateUser) {
         User userToBeUpdate = userRepository.getById(userId);
+        userToBeUpdate.setFirstname(updateUser.getFirstname());
+        userToBeUpdate.setLastname(updateUser.getLastname());
+        userToBeUpdate.setAge(updateUser.getAge());
         userToBeUpdate.setEmail(updateUser.getEmail());
         userToBeUpdate.setPassword(bCryptPasswordEncoder.encode(updateUser.getPassword()));
         userToBeUpdate.setRoles((List<Role>) updateUser.getRoles());

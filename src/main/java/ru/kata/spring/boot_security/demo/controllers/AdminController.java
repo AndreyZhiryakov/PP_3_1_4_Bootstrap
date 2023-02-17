@@ -18,6 +18,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -79,7 +80,7 @@ public class AdminController {
 
 
     @PatchMapping("/admin/{id}")
-    public String getUpdate (@ModelAttribute("user") User user, BindingResult bindingResult, @PathVariable ("id") Long  id) {
+    public String getUpdate (@ModelAttribute("_userForma") @Valid User user, BindingResult bindingResult, @PathVariable ("id") Long  id) {
         userService.updateUser(id, user);
         return "redirect:/admin";
     }
@@ -124,5 +125,8 @@ public class AdminController {
     public String index() {
         return "index";
     }
-
+    private Collection<Role> getRoleChek() {
+        Collection <Role> roleSet = roleService.getAllRoles();
+        return roleSet;
+    }
 }

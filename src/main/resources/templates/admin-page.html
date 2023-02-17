@@ -118,13 +118,13 @@
                                                             <label for="firstname"><strong>First name</strong></label>
                                                             <input type="text" class="form-control"
                                                                    th:value="${user.firstname}" id="firstname"
-                                                                   name ="First name">
+                                                                   name ="Firstname">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="lastname"><strong>Last name</strong></label>
                                                             <input type="text" class="form-control"
                                                                    th:value="${user.lastname}" id="lastname"
-                                                                   name ="Last name">
+                                                                   name ="Lastname">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="age"><strong>Age</strong></label>
@@ -145,9 +145,14 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="role"><strong>Role</strong></label>
-                                                            <select multiple class="form-control" style="height: 60px">
-                                                                <option>ADMIN</option>
-                                                                <option>USER</option>
+<!--                                                            <select multiple class="form-control" style="height: 60px">-->
+<!--                                                                <option>ADMIN</option>-->
+<!--                                                                <option>USER</option>-->
+<!--                                                            </select>-->
+                                                            <select th:value="${roleSet}" name="roleSet" class="form-control bg-body-secondary form-control-sm  text-muted field left" multiple id="validationServer006" style="height: 60px"  value="11" readonly>
+                                                                <option th:each="role : ${_roleSet}"
+                                                                        th:value="${role.id}"
+                                                                        th:text="${role.name}"  name="id"/>
                                                             </select>
                                                         </div>
 
