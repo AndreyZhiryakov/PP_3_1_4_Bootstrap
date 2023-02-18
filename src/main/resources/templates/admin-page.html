@@ -145,14 +145,10 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="role"><strong>Role</strong></label>
-<!--                                                            <select multiple class="form-control" style="height: 60px">-->
-<!--                                                                <option>ADMIN</option>-->
-<!--                                                                <option>USER</option>-->
-<!--                                                            </select>-->
-                                                            <select th:value="${roleSet}" name="roleSet" class="form-control bg-body-secondary form-control-sm  text-muted field left" multiple id="validationServer006" style="height: 60px"  value="11" readonly>
-                                                                <option th:each="role : ${_roleSet}"
+                                                             <select th:value="${roles}" name="roles" class="form-control bg-body-secondary form-control-sm  text-muted field left" multiple id="validationServer006" style="height: 60px"  value="11" readonly>
+                                                                <option th:each="role : ${roles}"
                                                                         th:value="${role.id}"
-                                                                        th:text="${role.name}"  name="id"/>
+                                                                        th:text="${role.role}"  name="id"/>
                                                             </select>
                                                         </div>
 
@@ -161,7 +157,6 @@
                                                                     data-dismiss="modal">Close
                                                             </button>
                                                             <button type="submit" class="btn btn-primary">Edit</button>
-                                                            <!--                                                            <input type="submit" class="btn btn-primary" value="Edit">-->
                                                         </div>
                                                     </form>
                                                 </div>

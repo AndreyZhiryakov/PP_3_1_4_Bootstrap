@@ -46,6 +46,7 @@ public class AdminController {
     public String viewUsers(Model model, Principal principal) {
         model.addAttribute("adminPage", userService.getUsersList());
         model.addAttribute("user", userService.loadUserByUsername(principal.getName()));
+        model.addAttribute("roles",roleService.getAllRoles());
         return "admin-page";
     }
 
