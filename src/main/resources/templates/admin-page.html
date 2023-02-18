@@ -84,7 +84,7 @@
                                     <td th:text="${user.getLastname()}">
                                     <td th:text="${user.getAge()}">
                                     <td th:text="${user.getEmail()}">
-                                    <td th:text="${user.getAuthorities()}">
+                                    <td th:text="${user.getRoles()}">
                                     <td>
                                         <button type="button" class="btn btn-info" data-toggle="modal" role="dialog"
                                                 th:data-target=" '#editModal'+ ${user.getId()}">
@@ -148,7 +148,7 @@
                                                              <select th:value="${roles}" name="roles" class="form-control bg-body-secondary form-control-sm  text-muted field left" multiple id="validationServer006" style="height: 60px"  value="11" readonly>
                                                                 <option th:each="role : ${roles}"
                                                                         th:value="${role.id}"
-                                                                        th:text="${role.role}"  name="id"/>
+                                                                        th:text="${role.getUnRole()}"  name="id"/>
                                                             </select>
                                                         </div>
 
@@ -222,10 +222,10 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="role"><strong>Role</strong></label>
-                                                                <select multiple class="form-control" id="role"
-                                                                        style="height: 60px">
-                                                                    <option>ADMIN</option>
-                                                                    <option>USER</option>
+                                                                <select th:value="${roles}" name="roles" class="form-control bg-body-secondary form-control-sm  text-muted field left" multiple id="validationServer006" style="height: 60px"  value="11" readonly>
+                                                                    <option th:each="role : ${roles}"
+                                                                            th:value="${role.id}"
+                                                                            th:text="${role.getUnRole()}"  name="id"/>
                                                                 </select>
                                                             </div>
                                                             <button type="submit" class="btn btn-primary">Delete</button>
