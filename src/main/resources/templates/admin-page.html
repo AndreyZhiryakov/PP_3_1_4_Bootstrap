@@ -128,8 +128,10 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="age"><strong>Age</strong></label>
-                                                            <input type="text" class="form-control"
-                                                                   th:value="${user.age}" id="age" name ="Age">
+                                                            <input type="number"  size="1" name="Age" min="1" max="150" step="1"
+                                                                   class="form-control"
+                                                                   th:value="${user.age}"id="age1"
+                                                            >
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="email"><strong>Email</strong></label>
@@ -210,9 +212,13 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="age"><strong>Age</strong></label>
-                                                                <input type="text" class="form-control"
+<!--                                                                <input type="text" class="form-control"-->
+<!--                                                                       th:value="${user.age}"id="age1"-->
+<!--                                                                       name="Age">-->
+                                                                <input type="number"  size="1" name="Age" min="1" max="150" step="1"
+                                                                       class="form-control"
                                                                        th:value="${user.age}"id="age1"
-                                                                       name="Age">
+                                                                       >
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="email"><strong>Email</strong></label>
